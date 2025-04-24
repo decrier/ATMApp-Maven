@@ -1,0 +1,20 @@
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.geometry.Insets?>
+
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="app.controllers.TransactionsController"
+      spacing="10" alignment="CENTER">
+
+    <padding>
+        <Insets top="10" right="15" bottom="20" left="15"/>
+    </padding>
+
+    <Label text="Transaktionen" style="-fx-font-size: 16;" />
+    <ListView fx:id="transactionList" prefWidth="400" />
+    <Button text="Zurück" onAction="#goBack" />
+</VBox>

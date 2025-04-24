@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+
+<VBox spacing="15" alignment="CENTER" minWidth="400" minHeight="300"
+      xmlns="http://javafx.com/javafx/8"
+      xmlns:fx= "http://javafx.com/fxml"
+      fx:controller="app.controllers.WithdrawController">
+    <padding>
+        <Insets top="30" right="30" bottom="30" left="30" />
+    </padding>
+
+    <Label text = "Geben Sie den Betrag ein:" />
+    <TextField fx:id="amountField" promptText="Betrag" />
+    <Button text="Bestätigen" onAction="#handleWithdraw" />
+    <Label fx:id="statusLabel" />
+    <Button text="Zurück" onAction="#handleBack" />
+
+</VBox>

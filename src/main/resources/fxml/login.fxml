@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="app.controllers.LoginController">
+    <children>
+        <VBox spacing="10" alignment="CENTER" AnchorPane.topAnchor="20.0"
+                AnchorPane.leftAnchor="20.0" AnchorPane.bottomAnchor="20.0"
+                AnchorPane.rightAnchor="20.0" minWidth="400" minHeight="300">
+            <Label text="Geldautomat - Start" style="-fx-font-size: 18;"  />
+            <TextField fx:id="cardNumberField" promptText="Kartennummer" maxWidth="100"/>
+            <PasswordField fx:id="pinField" promptText="PIN-Code" maxWidth="100"/>
+            <Button text="Login" onAction="#handleLogin" />
+        </VBox>
+    </children>
+
+</AnchorPane>

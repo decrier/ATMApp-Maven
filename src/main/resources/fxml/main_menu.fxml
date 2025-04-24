@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="app.controllers.MainMenuController">
+    <children>
+        <VBox spacing="15" alignment="CENTER" AnchorPane.rightAnchor="20.0"
+              AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0"
+              AnchorPane.topAnchor="20.0" minWidth="400" minHeight="300">
+            <Label fx:id="welcomeLabel" style="-fx-font-size: 16;" />
+            <Label fx:id="balanceLabel" />
+            <Button text="Kontostand zeigen" onAction="#showBalance" />
+            <Button text="Geld abheben" onAction="#goToWithdraw" />
+            <Button fx:id="depositButton" text="Geld einzahlen" onAction="#handleDeposit" />
+            <Button text="Transaktionen" onAction="#showTransactions" />
+            <Button text="Exit" onAction="#handleLogout" />
+        </VBox>
+    </children>
+</AnchorPane>
