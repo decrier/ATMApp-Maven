@@ -46,7 +46,6 @@ public class MainMenuController {
             balanceLabel.setText("Fehler beim Abrufen des Kontostands.");
         }
     }
-    
 
     @FXML
     private void goToWithdraw(ActionEvent event) {
@@ -95,6 +94,19 @@ public class MainMenuController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/transactions.fxml"));
             Scene scene = new Scene(loader.load());
             Stage stage = (Stage) (((Node) event.getSource()).getScene().getWindow());
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void goToTransfer(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/transfer.fxml"));
+            Scene scene = new Scene(loader.load());
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setTitle("Geldüberweisung");
             stage.setScene(scene);
         } catch (IOException e) {
             e.printStackTrace();
