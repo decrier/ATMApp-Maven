@@ -17,7 +17,7 @@
             <Label text="Geldautomat - Start" style="-fx-font-size: 18;"  />
             <TextField fx:id="cardNumberField" promptText="Kartennummer" maxWidth="100"/>
             <PasswordField fx:id="pinField" promptText="PIN-Code" maxWidth="100"/>
-            <Button text="Login" onAction="#handleLogin" />
+            <Button text="Login" onAction="#handleLogin" defaultButton="true"/>
         </VBox>
     </children>
 

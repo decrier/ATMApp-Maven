@@ -83,6 +83,7 @@ public class MainMenuController {
             Stage stage = (Stage) welcomeLabel.getScene().getWindow();
             stage.setScene(scene);
             stage.setTitle("ATM Login");
+            stage.show();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -107,6 +108,19 @@ public class MainMenuController {
             Scene scene = new Scene(loader.load());
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setTitle("Geldüberweisung");
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void goToPinChange(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/change_pin.fxml"));
+            Scene scene = new Scene(loader.load());
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setTitle("Change PIN");
             stage.setScene(scene);
         } catch (IOException e) {
             e.printStackTrace();

@@ -20,6 +20,7 @@
             <Button fx:id="depositButton" text="Geld einzahlen" onAction="#handleDeposit" />
             <Button text="Transaktionen" onAction="#showTransactions" />
             <Button text="Überweisung" onAction="#goToTransfer" />
+            <Button text="Change PIN" onAction="#goToPinChange" />
             <Button text="Exit" onAction="#handleLogout" />
         </VBox>
     </children>

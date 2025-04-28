@@ -36,6 +36,7 @@ public class LoginController {
 
         if(!cardNumber.matches("\\d{8,16}") || !pin.matches("\\d{4}")) {
             showAlert(AlertType.ERROR, "Ungültige Kartennummer oder ungültiges PIN-Format.");
+            return;
         }
 
         try (Connection conn = Database.connect()) {

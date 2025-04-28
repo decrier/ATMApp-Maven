@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="app.controllers.ChangePinController">
+    <VBox spacing="15" alignment="CENTER" minWidth="400" minHeight="300">
+        <padding>
+            <Insets bottom="30" left="30" top="30" right="30" />
+        </padding>
+
+        <Label text="Geben Sie Ihre actuelle PIN ein" />
+        <PasswordField fx:id="enteredPin" promptText="ACTUELLE PIN" />
+        <Label text="" />
+        <Label text="Geben Sie zweimal die gewünschte PIN ein!" />
+        <PasswordField fx:id="newInputPin1" promptText="Neue PIN" />
+        <PasswordField fx:id="newInputPin2" promptText="Neue PIN wiederholen" />
+
+        <Button text="Bestätigen" onAction="#changePin" />
+        <Label fx:id="statusLabel" />
+        <Button text="Zurück" onAction="#handleBack" />
+
+    </VBox>
+
+</AnchorPane>

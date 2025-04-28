@@ -26,7 +26,7 @@ public class DepositController {
         String input = amountField.getText().trim();
 
         try {
-            Double amount = Double.parseDouble(input);
+            double amount = Double.parseDouble(input);
 
             if (amount <= 0) {
                 statusLabel.setText("Geben Sie eine positive Zahl!");
