@@ -5,16 +5,17 @@
 <?import javafx.geometry.Insets?>
 
 
-<VBox xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="app.controllers.TransactionsController"
-      stylesheets="/app/styles/style.css">
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="app.controllers.TransactionsController"
+            stylesheets="/app/styles/style.css">
+    <VBox spacing="20" alignment="CENTER" AnchorPane.rightAnchor="20.0"
+          AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0"
+          AnchorPane.topAnchor="20.0" styleClass="vbox">
+        <Label text="Transaktionen" styleClass="label-title" />
+        <ListView fx:id="transactionList" prefWidth="400" styleClass="list-view"/>
+        <Button text="Zurück" onAction="#goBack" styleClass="button"/>
+    </VBox>
 
-    <padding>
-        <Insets top="10" right="15" bottom="20" left="15"/>
-    </padding>
-
-    <Label text="Transaktionen" style="-fx-font-size: 16;" />
-    <ListView fx:id="transactionList" prefWidth="400" />
-    <Button text="Zurück" onAction="#goBack" />
-</VBox>
+</AnchorPane>

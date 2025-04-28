@@ -1,24 +1,60 @@
-/* Общий фон и шрифты */
+/* src/main/resources/app/styles/style.css */
+
+/* Общий фон и шрифты для всего приложения */
 .root {
     -fx-font-family: "Segoe UI", "Roboto", "Arial", sans-serif;
     -fx-font-size: 14px;
     -fx-background-color: linear-gradient(to bottom, #eef2f3, #d6dee0);
+    -fx-padding: 20px;
+    -fx-min-width: 500px;
+    -fx-min-height: 600px;
 }
 
-/* Заголовки */
+/* Крупные заголовки (например, Willkommen, Zahlungsfunktionen) */
 .label-title {
     -fx-font-size: 22px;
     -fx-font-weight: bold;
     -fx-text-fill: #2c3e50;
 }
 
-/* Обычные надписи */
+/* Обычные подписи и текст */
 .label {
     -fx-text-fill: #2c3e50;
 }
 
-/* Текстовые поля и поля пароля */
-.text-field, .password-field {
+.balance-label {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1e3a8a;             /* насыщенный синий */
+    -fx-background-color: #ffffffaa;    /* полупрозрачный белый фон */
+    -fx-padding: 8px 12px;
+    -fx-background-radius: 8px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 8, 0.5, 0, 2);
+}
+
+.action-label {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1e3a8a;             /* насыщенный синий */
+    -fx-padding: 8px 12px;
+    /*-fx-background-radius: 8px;
+    -fx-background-color: #ffffffaa;    // полупрозрачный белый фон
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 8, 0.5, 0, 2);*/
+}
+
+.balance-label.positive {
+  -fx-background-color: #e6ffed;
+  -fx-text-fill: #2e7d32;
+}
+
+.balance-label.negative {
+  -fx-background-color: #ffebee;
+  -fx-text-fill: #c62828;
+}
+
+/* Текстовые поля и поля для PIN-кода */
+.text-field,
+.password-field {
     -fx-background-color: white;
     -fx-background-radius: 8px;
     -fx-border-radius: 8px;
@@ -29,12 +65,16 @@
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 5, 0, 0, 1);
 }
 
-.text-field:focused, .password-field:focused {
+.text-field:focused,
+.password-field:focused {
     -fx-border-color: #3498db;
 }
 
-/* Кнопки */
+/* Основные кнопки */
 .button {
+    -fx-pref-width: 160px;      /* все кнопки будут шириной 160px */
+    -fx-min-width: 160px;
+    -fx-max-width: 160px;
     -fx-background-color: #3498db;
     -fx-text-fill: white;
     -fx-font-weight: bold;
@@ -54,7 +94,23 @@
     -fx-background-color: #2471a3;
 }
 
-/* Списки (например, список транзакций) */
+/* Специальный стиль для кнопки выхода (Logout) */
+.cancel {
+    -fx-background-color: #e74c3c;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
+    -fx-padding: 8px 16px;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+}
+
+.cancel:hover {
+    -fx-background-color: #c0392b;
+}
+
+/* Стили для списков (например, история транзакций) */
 .list-view {
     -fx-background-color: white;
     -fx-border-color: #dcdcdc;
@@ -62,13 +118,8 @@
     -fx-padding: 5px;
 }
 
-/* VBox для красивого расположения */
+/* Утилитарный класс для VBox с едиными отступами */
 .vbox {
     -fx-alignment: center;
     -fx-spacing: 15px;
-}
-
-/* AnchorPane padding */
-.anchor-pane {
-    -fx-padding: 20px;
 }

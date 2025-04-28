@@ -8,19 +8,20 @@
 
 <?import javafx.geometry.Insets?>
 
-<VBox spacing="15" alignment="CENTER" minWidth="400" minHeight="300"
-      xmlns="http://javafx.com/javafx/8"
-      xmlns:fx= "http://javafx.com/fxml"
-      fx:controller="app.controllers.WithdrawController"
-      stylesheets="/app/styles/style.css">
-    <padding>
-        <Insets top="30" right="30" bottom="30" left="30" />
-    </padding>
+<AnchorPane xmlns="http://javafx.com/javafx/8"
+            xmlns:fx= "http://javafx.com/fxml"
+            fx:controller="app.controllers.WithdrawController"
+            stylesheets="/app/styles/style.css">
 
-    <Label text = "Geben Sie den Betrag ein:" />
-    <TextField fx:id="amountField" promptText="Betrag" />
-    <Button text="Bestätigen" onAction="#handleWithdraw" />
-    <Label fx:id="statusLabel" />
-    <Button text="Zurück" onAction="#handleBack" />
+    <VBox spacing="20" alignment="CENTER" AnchorPane.rightAnchor="20.0"
+          AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0"
+          AnchorPane.topAnchor="20.0" styleClass="vbox">
+        <Label text = "Geben Sie den Betrag ein:" styleClass="label-title" />
+        <TextField fx:id="amountField" promptText="Betrag" styleClass="text-field"/>
+        <Button text="Bestätigen" onAction="#handleWithdraw" styleClass="button"/>
+        <Label fx:id="statusLabel" styleClass="action-label"/>
+        <Button text="Zurück" onAction="#handleBack" styleClass="button"/>
 
-</VBox>
+    </VBox>
+</AnchorPane>
+

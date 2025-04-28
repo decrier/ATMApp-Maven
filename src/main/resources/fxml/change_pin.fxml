@@ -11,20 +11,22 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="app.controllers.ChangePinController"
             stylesheets="/app/styles/style.css">
-    <VBox spacing="15" alignment="CENTER" minWidth="400" minHeight="300">
-        <padding>
+    <VBox spacing="20" alignment="CENTER" AnchorPane.topAnchor="20.0"
+          AnchorPane.leftAnchor="20.0" AnchorPane.bottomAnchor="20.0"
+          AnchorPane.rightAnchor="20.0" styleClass="vbox">
+        <!--<padding>
             <Insets bottom="30" left="30" top="30" right="30" />
-        </padding>
+        </padding>-->
 
-        <Label text="Geben Sie Ihre actuelle PIN ein" styleClass="label"/>
+        <Label text="Geben Sie Ihre actuelle PIN ein" styleClass="label-title"/>
         <PasswordField fx:id="enteredPin" promptText="ACTUELLE PIN" styleClass="password-field"/>
         <Label text="" />
-        <Label text="Geben Sie zweimal die gewünschte PIN ein!" styleClass="label"/>
+        <Label text="Geben Sie zweimal die gewünschte PIN ein!" styleClass="label-title"/>
         <PasswordField fx:id="newInputPin1" promptText="Neue PIN" styleClass="password-field"/>
         <PasswordField fx:id="newInputPin2" promptText="Neue PIN wiederholen" styleClass="password-field"/>
 
         <Button text="Bestätigen" onAction="#changePin" />
-        <Label fx:id="statusLabel" />
+        <Label fx:id="statusLabel" styleClass="label-title"/>
         <Button text="Zurück" onAction="#handleBack" />
 
     </VBox>

@@ -9,22 +9,35 @@
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="app.controllers.MainMenuController"
-            stylesheets="/app/styles/style.css"
-            styleClass="anchor-pane">
-    <children>
-        <VBox spacing="15" alignment="CENTER" AnchorPane.rightAnchor="20.0"
-              AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0"
-              AnchorPane.topAnchor="20.0" minWidth="400" minHeight="300"
-                styleClass="vbox">
-            <Label fx:id="welcomeLabel" styleClass="label-title" />
-            <Label fx:id="balanceLabel" styleClass="label"/>
-            <Button text="Kontostand zeigen" onAction="#showBalance" styleClass="button"/>
-            <Button text="Geld abheben" onAction="#goToWithdraw" />
-            <Button fx:id="depositButton" text="Geld einzahlen" onAction="#handleDeposit" />
-            <Button text="Transaktionen" onAction="#showTransactions" />
-            <Button text="Überweisung" onAction="#goToTransfer" />
-            <Button text="Change PIN" onAction="#goToPinChange" />
-            <Button text="Exit" onAction="#handleLogout" />
+            stylesheets="/app/styles/style.css">
+    <VBox spacing="20" alignment="CENTER" AnchorPane.rightAnchor="20.0"
+          AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0"
+          AnchorPane.topAnchor="20.0" styleClass="vbox">
+
+        <Label fx:id="welcomeLabel" styleClass="label-title"/>
+        <Label fx:id="balanceLabel" styleClass="balance-label"/>
+
+        <Separator/>
+        <Label text="Zahlungsfunktionen:" styleClass="label-title"/>
+        <VBox spacing="10" alignment="CENTER">
+            <HBox spacing="10" alignment="CENTER">
+                <Button text="Geld abheben" onAction="#goToWithdraw" styleClass="button"/>
+                <Button text="Geld einzahlen" onAction="#handleDeposit" styleClass="button"/>
+            </HBox>
+            <HBox spacing="10" alignment="CENTER">
+                <Button text="Kontostand zeigen" onAction="#showBalance" styleClass="button"/>
+                <Button text="Überweisung" onAction="#goToTransfer" styleClass="button"/>
+            </HBox>
         </VBox>
-    </children>
+
+        <Separator/>
+        <Label text="Sonstige Funktionen:" styleClass="label-title"/>
+        <HBox spacing="10" alignment="CENTER">
+            <Button text="Transaktionen" onAction="#showTransactions" styleClass="button"/>
+            <Button text="Change PIN" onAction="#goToPinChange" styleClass="button"/>
+        </HBox>
+
+        <Separator/>
+        <Button text="Logout" onAction="#handleLogout" styleClass="cancel"/>
+    </VBox>
 </AnchorPane>

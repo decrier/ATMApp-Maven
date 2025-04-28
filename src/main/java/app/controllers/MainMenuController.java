@@ -40,6 +40,11 @@ public class MainMenuController {
 
             if (rs.next()) {
                 double balance = rs.getDouble("balance");
+                if (balance >= 0) {
+                    balanceLabel.getStyleClass().add("positive");
+                } else {
+                    balanceLabel.getStyleClass().add("negative");
+                }
                 balanceLabel.setText("Ihr Kontostand: " + balance + " €");
             }
         } catch (SQLException e) {
