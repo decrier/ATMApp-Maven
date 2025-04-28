@@ -2,6 +2,7 @@ package app.controllers;
 
 import app.Session;
 import app.database.Database;
+import app.utils.DialogUtil;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -31,11 +32,11 @@ public class LoginController {
         String pin = pinField.getText().trim();
 
         if(cardNumber.isEmpty() || pin.isEmpty()) {
-            showAlert(AlertType.ERROR, "Felder dürfen nicht leer sein.");
+            DialogUtil.showStyleAlert(AlertType.ERROR, "Fehler", "Felder dürfen nicht leer sein!");
         }
 
         if(!cardNumber.matches("\\d{8,16}") || !pin.matches("\\d{4}")) {
-            showAlert(AlertType.ERROR, "Ungültige Kartennummer oder ungültiges PIN-Format.");
+            DialogUtil.showStyleAlert(AlertType.ERROR, "Fehler", "Ungültige Kartennummer oder ungültiges PIN-Format.");
             return;
         }
 
@@ -48,8 +49,7 @@ public class LoginController {
 
             if (rs.next()) {
                 String name = rs.getString("full_name");
-                showAlert(AlertType.INFORMATION, "Willkommen " + name + "!");
-
+                DialogUtil.showStyleAlert(AlertType.INFORMATION, "Message", "Willkommen " + name + "!");
                 Session.setUser(name, cardNumber);
 
                 try {
@@ -60,15 +60,15 @@ public class LoginController {
                     stage.setTitle("Main Menu");
                 } catch (Exception e) {
                     e.printStackTrace();
-                    showAlert(AlertType.ERROR, "Fehler beim Laden des Hauptmenüs.");
+                    DialogUtil.showStyleAlert(AlertType.ERROR, "Fehler", "Fehler beim Laden des Hauptmenüs");
                 }
 
             } else {
-                showAlert(AlertType.ERROR, "Ungültige Kartennummer oder ungültiges PIN.");
+                DialogUtil.showStyleAlert(AlertType.ERROR, "Fehler", "Ungültige Kartennummer oder ungültiges PIN!");
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            showAlert(AlertType.ERROR, "Fehler bei der Datenbankverbindung");
+            DialogUtil.showStyleAlert(AlertType.ERROR, "Fehler", "Fehler bei der Datenbakverbindung");
         }
 
     }

@@ -11,7 +11,8 @@
 <VBox spacing="15" alignment="CENTER" minWidth="400" minHeight="300"
       xmlns="http://javafx.com/javafx/8"
       xmlns:fx= "http://javafx.com/fxml"
-      fx:controller="app.controllers.WithdrawController">
+      fx:controller="app.controllers.WithdrawController"
+      stylesheets="/app/styles/style.css">
     <padding>
         <Insets top="30" right="30" bottom="30" left="30" />
     </padding>

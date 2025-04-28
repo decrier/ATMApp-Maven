@@ -1,0 +1,45 @@
+/* Стили для всех диалогов (Alert-окон) */
+
+.dialog-pane {
+    -fx-background-color: #f9f9f9;
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333;
+    -fx-padding: 20px;
+    -fx-border-color: #4CAF50;
+    -fx-border-width: 2px;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+}
+
+.dialog-pane > .content.label {
+    -fx-wrap-text: true;
+    -fx-text-alignment: center;
+    -fx-padding: 10px;
+}
+
+/* Цвета текста для сообщений */
+.dialog-pane.error .content {
+    -fx-text-fill: #d32f2f; /* Красный для ошибок */
+}
+
+.dialog-pane.success .content {
+    -fx-text-fill: #388e3c; /* Зеленый для успешных операций */
+}
+
+.dialog-pane > .button-bar > .container {
+    -fx-spacing: 10px;
+    -fx-alignment: center;
+}
+
+.button {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #45a049;
+}

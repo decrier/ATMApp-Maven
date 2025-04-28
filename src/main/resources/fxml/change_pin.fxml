@@ -9,18 +9,19 @@
 <?import javafx.geometry.Insets?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="app.controllers.ChangePinController">
+            fx:controller="app.controllers.ChangePinController"
+            stylesheets="/app/styles/style.css">
     <VBox spacing="15" alignment="CENTER" minWidth="400" minHeight="300">
         <padding>
             <Insets bottom="30" left="30" top="30" right="30" />
         </padding>
 
-        <Label text="Geben Sie Ihre actuelle PIN ein" />
-        <PasswordField fx:id="enteredPin" promptText="ACTUELLE PIN" />
+        <Label text="Geben Sie Ihre actuelle PIN ein" styleClass="label"/>
+        <PasswordField fx:id="enteredPin" promptText="ACTUELLE PIN" styleClass="password-field"/>
         <Label text="" />
-        <Label text="Geben Sie zweimal die gewünschte PIN ein!" />
-        <PasswordField fx:id="newInputPin1" promptText="Neue PIN" />
-        <PasswordField fx:id="newInputPin2" promptText="Neue PIN wiederholen" />
+        <Label text="Geben Sie zweimal die gewünschte PIN ein!" styleClass="label"/>
+        <PasswordField fx:id="newInputPin1" promptText="Neue PIN" styleClass="password-field"/>
+        <PasswordField fx:id="newInputPin2" promptText="Neue PIN wiederholen" styleClass="password-field"/>
 
         <Button text="Bestätigen" onAction="#changePin" />
         <Label fx:id="statusLabel" />

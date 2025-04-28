@@ -8,7 +8,7 @@
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="app.controllers.TransactionsController"
-      spacing="10" alignment="CENTER">
+      stylesheets="/app/styles/style.css">
 
     <padding>
         <Insets top="10" right="15" bottom="20" left="15"/>

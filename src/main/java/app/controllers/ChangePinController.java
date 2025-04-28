@@ -2,6 +2,7 @@ package app.controllers;
 
 import app.Session;
 import app.database.Database;
+import app.utils.DialogUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -45,36 +46,36 @@ public class ChangePinController {
             if (rs.next()) {
                 String pinSql = rs.getString("pin");
                 if (!pinSql.equals(inputPin)) {
-                    showAlert(AlertType.ERROR, "Falsche PIN eingegeben");
+                    DialogUtil.showStyleAlert(AlertType.ERROR, "Fehler", "Falsche PIN eingegeben");
                     enteredPin.clear();
                     return;
                 }
 
                 if (inputPin.isEmpty() || newPin1.isEmpty() || newPin2.isEmpty()) {
-                    showAlert(AlertType.ERROR, "Felder dürfen nicht leer sein!");
+                    DialogUtil.showStyleAlert(AlertType.ERROR, "Fehler", "Felder dürfen nicht leer sein!");
                     return;
                 }
 
                 if (!inputPin.matches("\\d{4}")) {
-                    showAlert(AlertType.ERROR, "Ungültiges PIN-Format! (Im Feld \"Aktuelle PIN\")");
+                    DialogUtil.showStyleAlert(AlertType.ERROR, "Fehler", "Ungültiges PIN-Format! (Im Feld \"Aktuelle PIN\")");
                     return;
                 }
                 if (!newPin1.matches("\\d{4}"))  {
-                    showAlert(AlertType.ERROR, "Ungültiges PIN-Format! (Im Feld \"Neue PIN\")");
+                    DialogUtil.showStyleAlert(AlertType.ERROR, "Fehler", "Ungültiges PIN-Format! (Im Feld \"Neue PIN\")");
                     return;
                 }
                 if (!newPin2.matches("\\d{4}")) {
-                    showAlert(AlertType.ERROR, "Ungültiges PIN-Format! (Im Feld \"Neue PIN wiederholen\")");
+                    DialogUtil.showStyleAlert(AlertType.ERROR, "Fehler", "Ungültiges PIN-Format! (Im Feld \"Neue PIN\" wiederholen)");
                     return;
                 }
 
                 if (inputPin.equals(newPin1) || inputPin.equals(newPin2)) {
-                    showAlert(AlertType.ERROR, "Aktuelle und neue PINs dürfen nicht übereinstimmen");
+                    DialogUtil.showStyleAlert(AlertType.ERROR, "Fehler", "Aktuelle und neue PINs dürfen nicht übereinstimmen");
                     return;
                 }
 
                 if (!newPin1.equals(newPin2)) {
-                    showAlert(AlertType.ERROR, "Die wiederholte PIN stimmt nicht überein");
+                    DialogUtil.showStyleAlert(AlertType.ERROR, "Fehler", "Die wiederholte PIN stimmt nicht überein!");
                     return;
                 }
 
@@ -85,10 +86,10 @@ public class ChangePinController {
 
                 conn.commit();
 
-                showAlert(AlertType.INFORMATION, "PIN erfolgreich geändert.\nBitte loggen Sie mit Ihrer neuen PIN ein!");
+                DialogUtil.showStyleAlert(AlertType.INFORMATION, "Message", "PIN erfolgreich geändert.\nBitte loggen Sie mit Ihrer neuen PIN ein!");
                 handleLogout(event);
             } else {
-                showAlert(AlertType.ERROR, "PIN nicht gefunden");
+                DialogUtil.showStyleAlert(AlertType.ERROR, "Fehler", "PIN nicht gefunden");
             }
         } catch (SQLException e) {
             e.printStackTrace();

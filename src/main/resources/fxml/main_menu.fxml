@@ -8,14 +8,17 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="app.controllers.MainMenuController">
+            fx:controller="app.controllers.MainMenuController"
+            stylesheets="/app/styles/style.css"
+            styleClass="anchor-pane">
     <children>
         <VBox spacing="15" alignment="CENTER" AnchorPane.rightAnchor="20.0"
               AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0"
-              AnchorPane.topAnchor="20.0" minWidth="400" minHeight="300">
-            <Label fx:id="welcomeLabel" style="-fx-font-size: 16;" />
-            <Label fx:id="balanceLabel" />
-            <Button text="Kontostand zeigen" onAction="#showBalance" />
+              AnchorPane.topAnchor="20.0" minWidth="400" minHeight="300"
+                styleClass="vbox">
+            <Label fx:id="welcomeLabel" styleClass="label-title" />
+            <Label fx:id="balanceLabel" styleClass="label"/>
+            <Button text="Kontostand zeigen" onAction="#showBalance" styleClass="button"/>
             <Button text="Geld abheben" onAction="#goToWithdraw" />
             <Button fx:id="depositButton" text="Geld einzahlen" onAction="#handleDeposit" />
             <Button text="Transaktionen" onAction="#showTransactions" />

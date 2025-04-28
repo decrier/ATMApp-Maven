@@ -11,7 +11,7 @@ public class ATMApp extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
-        primaryStage.setTitle("ATM Login");
+        primaryStage.setTitle("Geldautomat - Start");
         primaryStage.setScene(new Scene(root, 400, 300));
         primaryStage.show();
     }

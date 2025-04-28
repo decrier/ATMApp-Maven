@@ -9,15 +9,16 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="app.controllers.LoginController">
+            fx:controller="app.controllers.LoginController"
+            stylesheets="/app/styles/style.css">
     <children>
         <VBox spacing="10" alignment="CENTER" AnchorPane.topAnchor="20.0"
                 AnchorPane.leftAnchor="20.0" AnchorPane.bottomAnchor="20.0"
                 AnchorPane.rightAnchor="20.0" minWidth="400" minHeight="300">
-            <Label text="Geldautomat - Start" style="-fx-font-size: 18;"  />
-            <TextField fx:id="cardNumberField" promptText="Kartennummer" maxWidth="100"/>
-            <PasswordField fx:id="pinField" promptText="PIN-Code" maxWidth="100"/>
-            <Button text="Login" onAction="#handleLogin" defaultButton="true"/>
+            <Label text="ATM - Login" style="-fx-font-size: 18;"  styleClass="label- title"/>
+            <TextField fx:id="cardNumberField" promptText="Kartennummer" styleClass="text-field"/>
+            <PasswordField fx:id="pinField" promptText="PIN-Code" styleClass="password-field"/>
+            <Button text="Login" onAction="#handleLogin" defaultButton="true" styleClass="confirm"/>
         </VBox>
     </children>
 
