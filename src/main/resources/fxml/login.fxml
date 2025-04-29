@@ -6,21 +6,26 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
+<?import javafx.collections.FXCollections?>
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="app.controllers.LoginController"
-            stylesheets="/app/styles/style.css"
-            >
-    <children>
-        <VBox spacing="20" alignment="CENTER" AnchorPane.topAnchor="20.0"
-                AnchorPane.leftAnchor="20.0" AnchorPane.bottomAnchor="20.0"
-                AnchorPane.rightAnchor="20.0" styleClass="vbox">
-            <Label text="ATM - Login" styleClass="label-title"/>
-            <TextField fx:id="cardNumberField" promptText="Kartennummer" styleClass="text-field"/>
-            <PasswordField fx:id="pinField" promptText="PIN-Code" styleClass="password-field"/>
-            <Button text="Login" onAction="#handleLogin" defaultButton="true" styleClass="confirm"/>
-        </VBox>
-    </children>
+            stylesheets="/app/styles/style.css">
+
+        <ComboBox fx:id="languageSelector" onAction="#handleLanguageChange" prefWidth="160"
+                AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10">
+        </ComboBox>
+
+    <VBox spacing="20" alignment="CENTER" AnchorPane.topAnchor="60.0"
+          AnchorPane.leftAnchor="20.0" AnchorPane.bottomAnchor="20.0"
+          AnchorPane.rightAnchor="20.0" styleClass="vbox">
+
+
+        <Label text="%login.title" styleClass="label-title"/>
+        <TextField fx:id="cardNumberField" promptText="%cardNumber" styleClass="text-field"/>
+        <PasswordField fx:id="pinField" promptText="%pin" styleClass="password-field"/>
+        <Button text="%login" onAction="#handleLogin" defaultButton="true" styleClass="confirm"/>
+    </VBox>
 
 </AnchorPane>

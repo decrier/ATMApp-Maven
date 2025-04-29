@@ -3,9 +3,12 @@ package app.controllers;
 import app.Session;
 import app.database.Database;
 import app.utils.DialogUtil;
+import app.utils.I18n;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.Alert;
@@ -16,6 +19,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 
 public class LoginController {
@@ -27,16 +32,19 @@ public class LoginController {
     private PasswordField pinField;
 
     @FXML
+    private ComboBox<String> languageSelector;
+
+    @FXML
     private void handleLogin() {
         String cardNumber = cardNumberField.getText().trim();
         String pin = pinField.getText().trim();
 
         if(cardNumber.isEmpty() || pin.isEmpty()) {
-            DialogUtil.showStyleAlert(AlertType.ERROR, "Fehler", "Felder dürfen nicht leer sein!");
+            DialogUtil.showStyleAlert(AlertType.ERROR, I18n.get("error"), I18n.get("error.empty"));
         }
 
         if(!cardNumber.matches("\\d{8,16}") || !pin.matches("\\d{4}")) {
-            DialogUtil.showStyleAlert(AlertType.ERROR, "Fehler", "Ungültige Kartennummer oder ungültiges PIN-Format.");
+            DialogUtil.showStyleAlert(AlertType.ERROR, I18n.get("error"), I18n.get("error.invalid"));
             return;
         }
 
@@ -49,7 +57,7 @@ public class LoginController {
 
             if (rs.next()) {
                 String name = rs.getString("full_name");
-                DialogUtil.showStyleAlert(AlertType.INFORMATION, "Message", "Willkommen " + name + "!");
+                DialogUtil.showStyleAlert(AlertType.INFORMATION, I18n.get("message"), I18n.get("welcome") + name + "!");
                 Session.setUser(name, cardNumber);
 
                 try {
@@ -60,19 +68,68 @@ public class LoginController {
                     stage.setTitle("Main Menu");
                 } catch (Exception e) {
                     e.printStackTrace();
-                    DialogUtil.showStyleAlert(AlertType.ERROR, "Fehler", "Fehler beim Laden des Hauptmenüs");
+                    DialogUtil.showStyleAlert(AlertType.ERROR, I18n.get("error"), I18n.get("error.main-menu-load"));
                 }
 
             } else {
-                DialogUtil.showStyleAlert(AlertType.ERROR, "Fehler", "Ungültige Kartennummer oder ungültiges PIN!");
+                DialogUtil.showStyleAlert(AlertType.ERROR, I18n.get("error"), I18n.get("error.invalid-card-pin"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            DialogUtil.showStyleAlert(AlertType.ERROR, "Fehler", "Fehler bei der Datenbakverbindung");
+            DialogUtil.showStyleAlert(AlertType.ERROR, I18n.get("error"), I18n.get("Fehler bei der Datenbakverbindung"));
         }
 
     }
 
+    @FXML
+    private void initialize() {
+        languageSelector.getItems().addAll(
+                I18n.get("language.select"),
+                "Deutsch",
+                "English",
+                "Русский"
+        );
+        languageSelector.getSelectionModel().selectFirst();
+    }
+
+    @FXML
+    private void handleLanguageChange() {
+        String selected = languageSelector.getValue();
+
+        if (selected.equals(I18n.get("language.select"))) {
+            return;
+        }
+
+        switch(selected) {
+            case "Deutsch":
+                I18n.setLocale(Locale.GERMAN);
+                break;
+            case "English":
+                I18n.setLocale(Locale.ENGLISH);
+                break;
+            case "Русский":
+                I18n.setLocale(new Locale("ru"));
+                break;
+            default:
+                return;
+        }
+
+        try {
+            ResourceBundle bundle = ResourceBundle.getBundle("i18n.messages", I18n.getLocale());
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"), bundle);
+            Parent root = loader.load();
+
+            Stage stage = (Stage) languageSelector.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle(bundle.getString("title"));
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    /*
     private void showAlert(AlertType type, String message) {
         Alert alert = new Alert(type);
         alert.setTitle("Message");
@@ -80,4 +137,5 @@ public class LoginController {
         alert.setContentText(message);
         alert.showAndWait();
     }
+     */
 }
