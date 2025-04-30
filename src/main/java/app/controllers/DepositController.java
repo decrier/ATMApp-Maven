@@ -2,6 +2,7 @@ package app.controllers;
 
 import app.Session;
 import app.database.Database;
+import app.utils.I18n;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -13,6 +14,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.MessageFormat;
+import java.util.ResourceBundle;
 
 public class DepositController {
     @FXML
@@ -29,7 +32,7 @@ public class DepositController {
             double amount = Double.parseDouble(input);
 
             if (amount <= 0) {
-                statusLabel.setText("Geben Sie eine positive Zahl!");
+                statusLabel.setText(I18n.get("message.input-positive"));
                 return;
             }
 
@@ -61,27 +64,27 @@ public class DepositController {
 
                     conn.commit();
 
-                    statusLabel.setText("Einzahlung von " + amount + "€ erfolgreich. \n" +
-                            "Neuer Kontostand: " + newBalance + "€");
+                    statusLabel.setText(MessageFormat.format(I18n.get("deposit.success"), amount, newBalance));
                     amountField.clear();
                 } else {
-                    statusLabel.setText("Benutzer nicht gefunden");
+                    statusLabel.setText(I18n.get("message.user-not-found"));
                 }
 
             } catch (SQLException e) {
                 e.printStackTrace();
-                statusLabel.setText("Fehler beim Zugriff auf die Datenbank");
+                statusLabel.setText(I18n.get("error.db-connect"));
             }
 
         } catch (NumberFormatException e) {
-            statusLabel.setText("Ungültiger Betrag");
+            statusLabel.setText(I18n.get("error.invalid-amount"));
         }
     }
 
     @FXML
     private void handleBack() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main_menu.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main_menu.fxml"),
+                    ResourceBundle.getBundle("i18n.messages", I18n.getLocale()));
             Scene scene = new Scene(loader.load());
 
             MainMenuController controller = loader.getController();
@@ -89,11 +92,11 @@ public class DepositController {
 
             Stage stage = (Stage) amountField.getScene().getWindow();
             stage.setScene(scene);
-            stage.setTitle("Main Menu");
+            stage.setTitle(I18n.get("title.main-menu"));
 
         } catch (Exception e) {
             e.printStackTrace();
-            statusLabel.setText("Fehler beim Zurückkehren zum Menu");
+            statusLabel.setText(I18n.get("error.return-to-menu"));
         }
     }
 

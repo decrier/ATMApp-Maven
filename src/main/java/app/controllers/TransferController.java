@@ -2,6 +2,7 @@ package app.controllers;
 
 import app.Session;
 import app.database.Database;
+import app.utils.I18n;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -16,6 +17,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
 public class TransferController {
 
@@ -34,7 +36,7 @@ public class TransferController {
         String amountText = amountField.getText().trim();
 
         if (recipient.isEmpty() || amountText.isEmpty()) {
-            statusLabel.setText("Bitte alle Felder ausfüllen.");
+            statusLabel.setText(I18n.get("error.empty-field"));
             return;
         }
 
@@ -43,7 +45,7 @@ public class TransferController {
         try {
             amount = Double.parseDouble(amountText);
             if (recipient.equals(sender)) {
-                statusLabel.setText("Nicht an sich selbst überweisen!");
+                statusLabel.setText(I18n.get("error.transfer-to-yourself"));
                 return;
             }
 
@@ -54,14 +56,14 @@ public class TransferController {
                 ps1.setString(1, sender);
                 ResultSet rs1 = ps1.executeQuery();
                 if (!rs1.next()) {
-                    statusLabel.setText("Sender nicht gefunden!");
+                    statusLabel.setText(I18n.get("error.sender-not-found"));
                     conn.rollback();
                     return;
                 }
 
                 double sndBalance = rs1.getDouble("balance");
                 if (amount > sndBalance) {
-                    statusLabel.setText("Nicht genügend Guthaben!");
+                    statusLabel.setText(I18n.get("error.not-enough-money"));
                     conn.rollback();
                     return;
                 }
@@ -72,7 +74,7 @@ public class TransferController {
                 ps2.setString(1, recipient);
                 ResultSet rs2 = ps2.executeQuery();
                 if (!rs2.next()) {
-                    statusLabel.setText("Empfänger nicht gefunden");
+                    statusLabel.setText(I18n.get("error.recipient-not-found"));
                     conn.rollback();
                     return;
                 }
@@ -109,14 +111,14 @@ public class TransferController {
                 rcpTransUpd.executeUpdate();
 
                 conn.commit();
-                statusLabel.setText("Überweisung erfolgreich.");
+                statusLabel.setText(I18n.get("transfer.success"));
 
             } catch (SQLException e) {
                 e.printStackTrace();
-                statusLabel.setText("Fehler bei der Überweisung");
+                statusLabel.setText(I18n.get("error.transer"));
             }
         } catch (NumberFormatException e) {
-            statusLabel.setText("Betrag muss eine Zahl sein!");
+            statusLabel.setText(I18n.get("error.invalid-amount"));
         }
 
     }
@@ -124,11 +126,12 @@ public class TransferController {
     @FXML
     private void handleBack(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main_menu.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main_menu.fxml"),
+                    ResourceBundle.getBundle("i18n.messages", I18n.getLocale()));
             Scene scene = new Scene(loader.load());
             Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
             stage.setScene(scene);
-            stage.setTitle("ATM - Main Menu");
+            stage.setTitle(I18n.get("title.main-menu"));
         } catch (Exception e) {
             e.printStackTrace();
         }

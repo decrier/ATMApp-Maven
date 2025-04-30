@@ -2,6 +2,7 @@ package app.controllers;
 
 import app.Session;
 import app.database.Database;
+import app.utils.I18n;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -16,6 +17,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.ResourceBundle;
 
 public class TransactionsController {
 
@@ -50,7 +52,8 @@ public class TransactionsController {
     @FXML
     private void goBack(javafx.event.ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main_menu.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main_menu.fxml"),
+                    ResourceBundle.getBundle("i18n.messages", I18n.getLocale()));
             Scene scene = new Scene(loader.load());
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);

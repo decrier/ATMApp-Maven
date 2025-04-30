@@ -13,9 +13,9 @@
     <VBox spacing="20" alignment="CENTER" AnchorPane.rightAnchor="20.0"
           AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0"
           AnchorPane.topAnchor="20.0" styleClass="vbox">
-        <Label text="Transaktionen" styleClass="label-title" />
+        <Label text="%transactions" styleClass="label-title" />
         <ListView fx:id="transactionList" prefWidth="400" styleClass="list-view"/>
-        <Button text="Zurück" onAction="#goBack" styleClass="button"/>
+        <Button text="%cancel" onAction="#goBack" styleClass="button"/>
     </VBox>
 
 </AnchorPane>

@@ -14,20 +14,17 @@
     <VBox spacing="20" alignment="CENTER" AnchorPane.topAnchor="20.0"
           AnchorPane.leftAnchor="20.0" AnchorPane.bottomAnchor="20.0"
           AnchorPane.rightAnchor="20.0" styleClass="vbox">
-        <!--<padding>
-            <Insets bottom="30" left="30" top="30" right="30" />
-        </padding>-->
 
-        <Label text="Geben Sie Ihre actuelle PIN ein" styleClass="label-title"/>
-        <PasswordField fx:id="enteredPin" promptText="ACTUELLE PIN" styleClass="password-field"/>
-        <Label text="" />
-        <Label text="Geben Sie zweimal die gewünschte PIN ein!" styleClass="label-title"/>
-        <PasswordField fx:id="newInputPin1" promptText="Neue PIN" styleClass="password-field"/>
-        <PasswordField fx:id="newInputPin2" promptText="Neue PIN wiederholen" styleClass="password-field"/>
+        <Label text="%pin.input" styleClass="label-title"/>
+        <PasswordField fx:id="enteredPin" promptText="%pin.inpit.actual" styleClass="password-field"/>
+        <Label text="%pin.input-desired" />
+        <Label text="" styleClass="label-title"/>
+        <PasswordField fx:id="newInputPin1" promptText="%pin.input.new" styleClass="password-field"/>
+        <PasswordField fx:id="newInputPin2" promptText="%pin.input.repeat" styleClass="password-field"/>
 
-        <Button text="Bestätigen" onAction="#changePin" />
+        <Button text="%change-pin" onAction="#changePin" />
         <Label fx:id="statusLabel" styleClass="label-title"/>
-        <Button text="Zurück" onAction="#handleBack" />
+        <Button text="%cancel" onAction="#handleBack" />
 
     </VBox>
 

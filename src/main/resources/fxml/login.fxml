@@ -12,9 +12,9 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="app.controllers.LoginController"
             stylesheets="/app/styles/style.css">
-
+        <Label text="%language.select" AnchorPane.leftAnchor="10" AnchorPane.topAnchor="10" />
         <ComboBox fx:id="languageSelector" onAction="#handleLanguageChange" prefWidth="160"
-                AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10">
+                AnchorPane.topAnchor="30" AnchorPane.leftAnchor="10">
         </ComboBox>
 
     <VBox spacing="20" alignment="CENTER" AnchorPane.topAnchor="60.0"

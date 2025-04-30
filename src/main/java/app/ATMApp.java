@@ -1,6 +1,7 @@
 package app;
 
 import app.utils.CreatedBy;
+import app.utils.I18n;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,13 +15,12 @@ import java.util.ResourceBundle;
 public class ATMApp extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Locale.setDefault(Locale.GERMAN);
-        ResourceBundle bundle = ResourceBundle.getBundle("i18n.messages", Locale.getDefault());
+        ResourceBundle bundle = ResourceBundle.getBundle("i18n.messages", I18n.getLocale());
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"), bundle);
         Parent root = loader.load();
         primaryStage.setTitle(bundle.getString("title"));
-        primaryStage.setScene(new Scene(root, 500, 400));
+        primaryStage.setScene(new Scene(root, 500, 600));
         primaryStage.show();
     }
 

@@ -15,14 +15,14 @@
           AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0"
           AnchorPane.topAnchor="20.0" styleClass="vbox">
 
-        <Label text="Empfänger-Kartennummer" styleClass="label-title"/>
-        <TextField fx:id="recipientCardField" promptText="Kartennummer" />
+        <Label text="%recipient.card-number" styleClass="label-title"/>
+        <TextField fx:id="recipientCardField" promptText="%card-number" />
 
-        <Label text="Betrag" styleClass="label-title"/>
-        <TextField fx:id="amountField" promptText="Betrag" styleClass="text-field"/>
+        <Label text="%amount" styleClass="label-title"/>
+        <TextField fx:id="amountField" promptText="%amount" styleClass="text-field"/>
 
-        <Button text="Überweisen" onAction="#handleTransfer" styleClass="button"/>
+        <Button text="%confirm" onAction="#handleTransfer" styleClass="button"/>
         <Label fx:id="statusLabel" styleClass="action-label"/>
-        <Button text="Zurück" onAction="#handleBack" styleClass="button"/>
+        <Button text="%cancel" onAction="#handleBack" styleClass="button"/>
     </VBox>
 </AnchorPane>

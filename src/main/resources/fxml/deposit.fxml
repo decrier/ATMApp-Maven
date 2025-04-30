@@ -15,10 +15,10 @@
           AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0"
           AnchorPane.topAnchor="20.0" styleClass="vbox">
 
-        <Label text = "Einzahlungsbetrag:" styleClass="label-title"/>
-        <TextField fx:id="amountField" promptText="Betrag" styleClass="text-field"/>
-        <Button text="Bestätigen" onAction="#handleDeposit" styleClass="button"/>
+        <Label text = "%deposit.amount" styleClass="label-title"/>
+        <TextField fx:id="amountField" promptText="%amount" styleClass="text-field"/>
+        <Button text="%confirm" onAction="#handleDeposit" styleClass="button"/>
         <Label fx:id="statusLabel" styleClass="action-label"/>
-        <Button text="Zurück" onAction="#handleBack" styleClass="button"/>
+        <Button text="%cancel" onAction="#handleBack" styleClass="button"/>
     </VBox>
 </AnchorPane>

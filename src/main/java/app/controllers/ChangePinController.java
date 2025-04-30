@@ -3,6 +3,7 @@ package app.controllers;
 import app.Session;
 import app.database.Database;
 import app.utils.DialogUtil;
+import app.utils.I18n;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +17,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.*;
+import java.util.ResourceBundle;
 
 public class ChangePinController {
 
@@ -46,36 +48,36 @@ public class ChangePinController {
             if (rs.next()) {
                 String pinSql = rs.getString("pin");
                 if (!pinSql.equals(inputPin)) {
-                    DialogUtil.showStyleAlert(AlertType.ERROR, "Fehler", "Falsche PIN eingegeben");
+                    DialogUtil.showStyleAlert(AlertType.ERROR, I18n.get("error"), I18n.get("error.invalid-pin"));
                     enteredPin.clear();
                     return;
                 }
 
                 if (inputPin.isEmpty() || newPin1.isEmpty() || newPin2.isEmpty()) {
-                    DialogUtil.showStyleAlert(AlertType.ERROR, "Fehler", "Felder dürfen nicht leer sein!");
+                    DialogUtil.showStyleAlert(AlertType.ERROR, I18n.get("error"), I18n.get("error.empty"));
                     return;
                 }
 
-                if (!inputPin.matches("\\d{4}")) {
-                    DialogUtil.showStyleAlert(AlertType.ERROR, "Fehler", "Ungültiges PIN-Format! (Im Feld \"Aktuelle PIN\")");
+                /*if (!inputPin.matches("\\d{4}")) {
+                    DialogUtil.showStyleAlert(AlertType.ERROR, I18n.get("error"), I18n.get("error.invalid-pin-format.current"));
                     return;
-                }
+                }*/
                 if (!newPin1.matches("\\d{4}"))  {
-                    DialogUtil.showStyleAlert(AlertType.ERROR, "Fehler", "Ungültiges PIN-Format! (Im Feld \"Neue PIN\")");
+                    DialogUtil.showStyleAlert(AlertType.ERROR, I18n.get("error"), I18n.get("error.invalid-pin-format.new"));
                     return;
                 }
                 if (!newPin2.matches("\\d{4}")) {
-                    DialogUtil.showStyleAlert(AlertType.ERROR, "Fehler", "Ungültiges PIN-Format! (Im Feld \"Neue PIN\" wiederholen)");
+                    DialogUtil.showStyleAlert(AlertType.ERROR, I18n.get("error"), I18n.get("error.invalid-pin-format.repeat"));
                     return;
                 }
 
                 if (inputPin.equals(newPin1) || inputPin.equals(newPin2)) {
-                    DialogUtil.showStyleAlert(AlertType.ERROR, "Fehler", "Aktuelle und neue PINs dürfen nicht übereinstimmen");
+                    DialogUtil.showStyleAlert(AlertType.ERROR, I18n.get("error"), I18n.get("error.2-pins-match"));
                     return;
                 }
 
                 if (!newPin1.equals(newPin2)) {
-                    DialogUtil.showStyleAlert(AlertType.ERROR, "Fehler", "Die wiederholte PIN stimmt nicht überein!");
+                    DialogUtil.showStyleAlert(AlertType.ERROR, I18n.get("error"), I18n.get("error.pins-not-match"));
                     return;
                 }
 
@@ -86,25 +88,26 @@ public class ChangePinController {
 
                 conn.commit();
 
-                DialogUtil.showStyleAlert(AlertType.INFORMATION, "Message", "PIN erfolgreich geändert.\nBitte loggen Sie mit Ihrer neuen PIN ein!");
+                DialogUtil.showStyleAlert(AlertType.INFORMATION, I18n.get("message"), I18n.get("message.change-pin.success"));
                 handleLogout(event);
             } else {
-                DialogUtil.showStyleAlert(AlertType.ERROR, "Fehler", "PIN nicht gefunden");
+                DialogUtil.showStyleAlert(AlertType.ERROR, I18n.get("error"), I18n.get("error.pin-not-found"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            statusLabel.setText("Fehler beim Zugriff auf Datenbank");
+            statusLabel.setText(I18n.get("error.db-connect"));
         }
     }
 
     public void handleBack(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main_menu.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main_menu.fxml"),
+                    ResourceBundle.getBundle("i18n.messages", I18n.getLocale()));
             Scene scene = new Scene(loader.load());
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
-            stage.setTitle("ATM - Main Menu");
+            stage.setTitle(I18n.get("title.main-menu"));
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -123,11 +126,12 @@ public class ChangePinController {
         Session.clear();
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"),
+                    ResourceBundle.getBundle("i18n.messages", I18n.getLocale()));
             Scene scene = new Scene(loader.load());
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
-            stage.setTitle("Geldautomat - Start");
+            stage.setTitle(I18n.get("title"));
         } catch (Exception e) {
             e.printStackTrace();
         }

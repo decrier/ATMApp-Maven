@@ -61,22 +61,23 @@ public class LoginController {
                 Session.setUser(name, cardNumber);
 
                 try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main_menu.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main_menu.fxml"),
+                            ResourceBundle.getBundle("i18n.messages", I18n.getLocale()));
                     Scene scene = new Scene(loader.load());
                     Stage stage = (Stage) cardNumberField.getScene().getWindow();
                     stage.setScene(scene);
-                    stage.setTitle("Main Menu");
+                    stage.setTitle(I18n.get("title.main-menu"));
                 } catch (Exception e) {
                     e.printStackTrace();
                     DialogUtil.showStyleAlert(AlertType.ERROR, I18n.get("error"), I18n.get("error.main-menu-load"));
                 }
 
             } else {
-                DialogUtil.showStyleAlert(AlertType.ERROR, I18n.get("error"), I18n.get("error.invalid-card-pin"));
+                DialogUtil.showStyleAlert(AlertType.ERROR, I18n.get("error"), I18n.get("error.auth"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            DialogUtil.showStyleAlert(AlertType.ERROR, I18n.get("error"), I18n.get("Fehler bei der Datenbakverbindung"));
+            DialogUtil.showStyleAlert(AlertType.ERROR, I18n.get("error"), I18n.get("error.db-connect"));
         }
 
     }
@@ -84,12 +85,13 @@ public class LoginController {
     @FXML
     private void initialize() {
         languageSelector.getItems().addAll(
-                I18n.get("language.select"),
                 "Deutsch",
                 "English",
                 "Русский"
         );
-        languageSelector.getSelectionModel().selectFirst();
+
+        String curruntLanguage = I18n.getLanguageDisplayName();
+        languageSelector.getSelectionModel().select(curruntLanguage);
     }
 
     @FXML
