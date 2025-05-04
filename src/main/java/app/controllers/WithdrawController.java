@@ -68,7 +68,7 @@ public class WithdrawController {
 
                         conn.commit();
 
-                        statusLabel.setText(MessageFormat.format(I18n.get("withdraw.success"), amount, newBalance));
+                        statusLabel.setText(MessageFormat.format(I18n.get("withdraw.success"), amount, "\n", newBalance));
                         amountField.clear();
                     } else {
                         statusLabel.setText(I18n.get("error.not-enough-money"));

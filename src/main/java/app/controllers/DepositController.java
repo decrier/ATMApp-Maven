@@ -64,7 +64,7 @@ public class DepositController {
 
                     conn.commit();
 
-                    statusLabel.setText(MessageFormat.format(I18n.get("deposit.success"), amount, newBalance));
+                    statusLabel.setText(MessageFormat.format(I18n.get("deposit.success"), amount, "\n", newBalance));
                     amountField.clear();
                 } else {
                     statusLabel.setText(I18n.get("message.user-not-found"));

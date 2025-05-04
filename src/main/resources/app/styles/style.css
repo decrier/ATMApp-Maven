@@ -72,9 +72,9 @@
 
 /* Основные кнопки */
 .button {
-    -fx-pref-width: 160px;      /* все кнопки будут шириной 160px */
-    -fx-min-width: 160px;
-    -fx-max-width: 160px;
+    -fx-pref-width: 200px;      /* все кнопки будут шириной 200px */
+    -fx-min-width: 200px;
+    -fx-max-width: 200px;
     -fx-background-color: #3498db;
     -fx-text-fill: white;
     -fx-font-weight: bold;

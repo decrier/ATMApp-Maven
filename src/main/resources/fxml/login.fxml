@@ -23,7 +23,7 @@
 
 
         <Label text="%login.title" styleClass="label-title"/>
-        <TextField fx:id="cardNumberField" promptText="%cardNumber" styleClass="text-field"/>
+        <TextField fx:id="cardNumberField" promptText="%card-number" styleClass="text-field"/>
         <PasswordField fx:id="pinField" promptText="%pin" styleClass="password-field"/>
         <Button text="%login" onAction="#handleLogin" defaultButton="true" styleClass="confirm"/>
     </VBox>

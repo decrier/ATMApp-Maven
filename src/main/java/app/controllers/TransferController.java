@@ -115,7 +115,7 @@ public class TransferController {
 
             } catch (SQLException e) {
                 e.printStackTrace();
-                statusLabel.setText(I18n.get("error.transer"));
+                statusLabel.setText(I18n.get("error.transfer"));
             }
         } catch (NumberFormatException e) {
             statusLabel.setText(I18n.get("error.invalid-amount"));
