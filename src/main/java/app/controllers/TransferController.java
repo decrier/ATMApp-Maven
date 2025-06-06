@@ -50,6 +50,8 @@ public class TransferController {
             }
 
             try (Connection conn = Database.connect()){
+                conn.setAutoCommit(false);
+
                 // Kontostand des Senders
                 String sndBalanceSql = "SELECT balance FROM users WHERE card_number = ?";
                 PreparedStatement ps1 = conn.prepareStatement(sndBalanceSql);
@@ -100,7 +102,7 @@ public class TransferController {
                 sndTransUpd.setString(1, sender);
                 sndTransUpd.setDouble(2, -amount);
                 sndTransUpd.setString(3, "transfer_sent");
-                sndTransUpd.executeQuery();
+                sndTransUpd.executeUpdate();
 
                 String rcpTransSql = "INSERT INTO transactions (card_number, amount, transaction_type, timestamp) " +
                                 "VALUES (?, ?, ?, NOW())";
