@@ -94,6 +94,7 @@ public class TransferController {
                 PreparedStatement rcpUpd = conn.prepareStatement(rcpUpdateSql);
                 rcpUpd.setDouble(1,rcpBalance + amount);
                 rcpUpd.setString(2, recipient);
+                rcpUpd.executeUpdate();
 
                 // Aufzeichnen von Transaktionen
                 String sndTransSql = "INSERT INTO transactions (card_number, amount, transaction_type, timestamp) " +

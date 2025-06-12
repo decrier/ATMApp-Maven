@@ -41,6 +41,7 @@ public class LoginController {
 
         if(cardNumber.isEmpty() || pin.isEmpty()) {
             DialogUtil.showStyleAlert(AlertType.ERROR, I18n.get("error"), I18n.get("error.empty"));
+            return;
         }
 
         if(!cardNumber.matches("\\d{8,16}") || !pin.matches("\\d{4}")) {
@@ -98,9 +99,9 @@ public class LoginController {
     private void handleLanguageChange() {
         String selected = languageSelector.getValue();
 
-        if (selected.equals(I18n.get("language.select"))) {
-            return;
-        }
+//        if (selected.equals(I18n.get("language.select"))) {
+//            return;
+//        }
 
         switch(selected) {
             case "Deutsch":

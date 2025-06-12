@@ -59,7 +59,7 @@ public class WithdrawController {
                         updateStmt.executeUpdate();
 
                         String insertTransaction = "INSERT INTO transactions " +
-                                "(card_number, amount, transaction_type) VALUES (?, ?, ?)";
+                                "(card_number, amount, transaction_type, timestamp) VALUES (?, ?, ?, NOW())";
                         PreparedStatement transStmt = conn.prepareStatement(insertTransaction);
                         transStmt.setString(1, Session.getCardNumber());
                         transStmt.setDouble(2, amount);
